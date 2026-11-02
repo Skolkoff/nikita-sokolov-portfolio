@@ -54,8 +54,8 @@ export default function Home() {
 
       <section className="contact-section section-wrap" id="contact">
         <p className="eyebrow"><span className="eyebrow-line" />{t('contact.eyebrow')}</p>
-        <div className="contact-row"><h2>{t('contact.title')}</h2><a className="contact-circle" href="mailto:hello@portfolioskolkoff.ru" aria-label="Send email"><ArrowUpRight size={30} /></a></div>
-        <div className="contact-bottom"><p>{t('contact.body')}</p><a className="text-link" href="mailto:hello@portfolioskolkoff.ru">{t('contact.email')} <ArrowUpRight size={16} /></a></div>
+        <div className="contact-row"><h2>{t('contact.title')}</h2><a className="contact-circle" href="https://t.me/nikskof" aria-label="Send email"><ArrowUpRight size={30} /></a></div>
+        <div className="contact-bottom"><p>{t('contact.body')}</p><a className="text-link" href="https://t.me/nikskof">{t('contact.email')} <ArrowUpRight size={16} /></a></div>
       </section>
     </>
   )
