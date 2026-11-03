@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import ProjectDetail from './pages/ProjectDetail'
@@ -7,6 +8,12 @@ import BgsLanding from './bgs/BgsLanding'
 import BgsProposal from './bgs/BgsProposal'
 
 export default function App() {
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    const target = hash ? document.getElementById(hash.slice(1)) : null
+    if (target) target.scrollIntoView({ behavior: 'instant' })
+    else window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname, hash])
   return (
     <Routes>
       <Route path="/bgs" element={<BgsLayout />}>

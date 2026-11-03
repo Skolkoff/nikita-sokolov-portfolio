@@ -17,3 +17,5 @@
 .bgs-demo-disclaimer,.bgs-demo-reset,.bgs-demo-tabs button,.bgs-demo-tabs button>span,.bgs-demo-search,.bgs-demo-result p,.bgs-demo-event>p,.bgs-demo-fit-body,.bgs-fit-checks li,.bgs-demo-settings label,.bgs-interest p,.bgs-draft-actions button,.bgs-editor-label,.bgs-review-heading p,.bgs-review-checks label,.bgs-copy-status,.bgs-demo-footer button{color:#5d6f4f}
 .bgs-demo-header .bgs-demo-reset{color:#c1cdb4}
 @media(max-width:760px){.bgs-demo-disclaimer{font-size:11px}.bgs-demo-tabs button{font-size:10px!important}.bgs-demo textarea{font-size:12px!important}.bgs-demo-fit-body,.bgs-demo-facts li,.bgs-demo-event>p,.bgs-review-checks label{font-size:12px}.bgs-copy-status{font-size:11px}}
+
+.bgs-stale p{margin:0 0 10px}.bgs-keep-draft{display:inline-flex;align-items:center;gap:8px;border:1px solid #c8b787;background:#fffdf5;color:#796536;padding:8px 10px;font-size:11px!important;text-align:left;line-height:1.6}

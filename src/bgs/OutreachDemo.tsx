@@ -11,9 +11,16 @@ const OutreachDemo = forwardRef<{ openDraft: () => void }>(function OutreachDemo
   const [state, dispatch] = useReducer(outreachReducer, locale, createOutreachState)
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle')
   const textRef = useRef<HTMLTextAreaElement>(null)
+  const focusDraftRequested = useRef(false)
   useEffect(() => { dispatch({ type: 'locale', value: locale }) }, [locale])
   useEffect(() => { setCopyStatus('idle') }, [state.draft, state.checks, state.stale])
-  useImperativeHandle(ref, () => ({ openDraft: () => dispatch({ type: 'step', value: 5 }) }), [])
+  useEffect(() => {
+    if (focusDraftRequested.current && state.step === 5) {
+      textRef.current?.focus({ preventScroll: true })
+      focusDraftRequested.current = false
+    }
+  })
+  useImperativeHandle(ref, () => ({ openDraft: () => { focusDraftRequested.current = true; dispatch({ type: 'step', value: 5 }) } }), [])
   const t = ru ? {
     label: 'ИНТЕРАКТИВНЫЙ ПРИМЕР', title: 'Outreach Assistant', notice: 'Сценарная демонстрация: вымышленная компания, заранее подготовленные тексты. Живой поиск, AI и отправка сообщений не подключены.',
     steps: ['Мероприятие', 'Поиск компании', 'Анализ бизнеса', 'Релевантность', 'Интерес', 'Предложение', 'Проверка'],
@@ -29,7 +36,7 @@ const OutreachDemo = forwardRef<{ openDraft: () => void }>(function OutreachDemo
     recipient: 'Тип адресата', recipients: ['Делегат', 'Спонсор', 'Партнёр'], tone: 'Тон предложения', tones: ['Деловой', 'Краткий'],
     interests: ['Обсудить практические подходы и познакомиться с отраслевыми специалистами.', 'Представить решение релевантной аудитории при подходящих целях и доступной категории.', 'Обменяться отраслевой экспертизой и контентом вокруг общих тем.'],
     hypothesis: 'ГИПОТЕЗА ИНТЕРЕСА', validate: 'Подтвердить в разговоре. Тематическая связь не означает намерение участвовать.',
-    editor: 'Редактируемый черновик', template: 'ПОДГОТОВЛЕННЫЙ ШАБЛОН ПРИМЕРА', update: 'Обновить черновик — заменить правки', stale: 'Настройки или язык изменены. Текущий текст сохранён. Обновление заменит его и сбросит проверку.',
+    editor: 'Редактируемый черновик', template: 'ПОДГОТОВЛЕННЫЙ ШАБЛОН ПРИМЕРА', update: 'Обновить черновик — заменить правки', keepDraft: 'Оставить мой вариант для проверки', stale: 'Настройки или язык изменены. Текст сохранён. Обновите шаблон или оставьте свой вариант для повторной проверки.',
     checklist: ['Проверить факты и основания обращения', 'Подтвердить формат и коммерческие условия', 'Уточнить интерес и допустимость контакта'],
     reviewTitle: 'Решение остаётся за менеджером.', reviewText: 'Редактирование или обновление текста сбрасывает проверку. Копирование доступно после всех трёх отметок.', copy: 'Скопировать проверенный черновик', copied: 'Черновик скопирован. Сообщение не отправлено.', failed: 'Копирование недоступно. Текст выделен: скопируйте его вручную.', notSent: 'Ничего не отправляется. Черновик остаётся в вашем браузере.',
   } : {
@@ -47,7 +54,7 @@ const OutreachDemo = forwardRef<{ openDraft: () => void }>(function OutreachDemo
     recipient: 'Recipient type', recipients: ['Delegate', 'Sponsor', 'Partner'], tone: 'Invitation tone', tones: ['Business', 'Concise'],
     interests: ['Discuss practical approaches and connect with industry specialists.', 'Introduce a solution to a relevant audience, subject to objectives and category availability.', 'Exchange expertise and content around shared industry topics.'],
     hypothesis: 'POSSIBLE INTEREST', validate: 'Validate in a conversation. Topic fit does not imply an intention to attend.',
-    editor: 'Editable draft', template: 'PREWRITTEN EXAMPLE TEMPLATE', update: 'Update draft — replace edits', stale: 'Settings or language changed. Your current text is preserved. Updating replaces it and clears review checks.',
+    editor: 'Editable draft', template: 'PREWRITTEN EXAMPLE TEMPLATE', update: 'Update draft — replace edits', keepDraft: 'Keep my draft for review', stale: 'Settings or language changed. Your text is preserved. Update the template or keep your version for a fresh review.',
     checklist: ['Verify facts and the reason for contacting', 'Confirm the format and commercial terms', 'Clarify interest and permission to contact'],
     reviewTitle: 'The manager makes the decision.', reviewText: 'Editing or updating the draft clears the review. Copy is available after all three checks.', copy: 'Copy reviewed draft', copied: 'Draft copied. No message was sent.', failed: 'Clipboard unavailable. The text is selected; please copy it manually.', notSent: 'Nothing is sent. The draft stays in your browser.',
   }
@@ -73,7 +80,7 @@ const OutreachDemo = forwardRef<{ openDraft: () => void }>(function OutreachDemo
       {state.step === 2 && <><p className="bgs-subtle">{t.profileIntro}</p><ul className="bgs-demo-facts">{t.facts.map(fact => <li key={fact}><Check size={15}/>{fact}</li>)}</ul><aside className="bgs-demo-unknown"><strong>{t.unknownTitle}</strong><p>{t.unknown}</p></aside></>}
       {state.step === 3 && <><span className="bgs-label">{t.fitLabel}</span><h5 className="bgs-fit-title">{t.fitTitle}</h5><p className="bgs-demo-fit-body">{t.fitBody}</p><ul className="bgs-fit-checks">{t.fitChecks.map(check => <li key={check}><span/>{check}</li>)}</ul><p className="bgs-boundary">{t.fitNote}</p></>}
       {state.step === 4 && <>{settings}<div className="bgs-interest"><span className="bgs-label">{t.hypothesis}</span><h5>{t.interests[recipients.indexOf(state.recipient)]}</h5><p>{t.validate}</p></div></>}
-      {state.step >= 5 && <>{settings}<div className="bgs-draft-actions"><span className="bgs-label"><FileText size={14}/>{t.template}</span><button onClick={() => dispatch({ type: 'regenerate' })}>{t.update}<RotateCcw size={13}/></button></div>{state.stale && <p className="bgs-stale" role="status">{t.stale}</p>}<label className="bgs-editor-label" htmlFor="outreach-draft">{t.editor}</label><textarea id="outreach-draft" ref={textRef} value={state.draft} onChange={e => dispatch({ type: 'edit', text: e.target.value })} spellCheck={false}/>
+      {state.step >= 5 && <>{settings}<div className="bgs-draft-actions"><span className="bgs-label"><FileText size={14}/>{t.template}</span><button onClick={() => dispatch({ type: 'regenerate' })}>{t.update}<RotateCcw size={13}/></button></div>{state.stale && <div className="bgs-stale"><p role="status">{t.stale}</p><button className="bgs-keep-draft" onClick={() => dispatch({ type: 'keepDraft' })}>{t.keepDraft}<Check size={14}/></button></div>}<label className="bgs-editor-label" htmlFor="outreach-draft">{t.editor}</label><textarea id="outreach-draft" ref={textRef} value={state.draft} onChange={e => dispatch({ type: 'edit', text: e.target.value })} spellCheck={false}/>
         {state.step === 6 && <div className="bgs-review"><div className="bgs-review-heading"><ShieldCheck size={23}/><div><h5>{t.reviewTitle}</h5><p>{t.reviewText}</p></div></div><div className="bgs-review-checks">{t.checklist.map((check, i) => <label key={i}><input type="checkbox" checked={state.checks[i]} onChange={e => dispatch({ type: 'check', index: i, value: e.target.checked })}/><span>{check}</span></label>)}</div><button className="bgs-button bgs-button-dark bgs-copy-button" disabled={!canCopy(state)} onClick={() => void copyDraft()}>{copyStatus === 'copied' ? <CheckCheck size={17}/> : <Copy size={17}/>} {t.copy}</button><p className="bgs-copy-status" role="status">{copyStatus === 'copied' ? t.copied : copyStatus === 'failed' ? t.failed : t.notSent}</p></div>}
       </>}
     </div>

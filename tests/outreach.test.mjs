@@ -60,3 +60,15 @@ test('reset keeps active language and resets recipient, step, draft and review',
   assert.match(s.draft, /Здравствуйте/)
   assert.equal(canCopy(s), false)
 })
+
+test('a manager can keep a custom draft after preferences change without losing edits', () => {
+  let s = createOutreachState('en')
+  s = outreachReducer(s, { type: 'edit', text: 'My completed personal proposal' })
+  s = outreachReducer(s, { type: 'recipient', value: 'sponsor' })
+  s = outreachReducer(s, { type: 'keepDraft' })
+  assert.equal(s.draft, 'My completed personal proposal')
+  assert.equal(s.stale, false)
+  assert.equal(canCopy(s), false)
+  for (let index = 0; index < 3; index++) s = outreachReducer(s, { type: 'check', index, value: true })
+  assert.equal(canCopy(s), true)
+})

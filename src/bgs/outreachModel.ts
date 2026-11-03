@@ -30,7 +30,7 @@ export type OutreachAction =
   | { type: 'step'; value: number }
   | { type: 'edit'; text: string }
   | { type: 'check'; index: number; value: boolean }
-  | { type: 'regenerate' } | { type: 'reset' }
+  | { type: 'regenerate' } | { type: 'keepDraft' } | { type: 'reset' }
 
 export function createOutreachState(locale: Locale): OutreachState {
   return { locale, recipient: 'delegate', tone: 'business', step: 0, draft: buildDraft(locale, 'delegate', 'business'), stale: false, checks: [false, false, false] }
@@ -47,6 +47,7 @@ export function outreachReducer(state: OutreachState, action: OutreachAction): O
     case 'edit': return { ...state, draft: action.text, checks: [false, false, false] }
     case 'check': return { ...state, checks: state.checks.map((v, i) => i === action.index ? action.value : v) }
     case 'regenerate': return { ...state, draft: buildDraft(state.locale, state.recipient, state.tone), stale: false, checks: [false, false, false] }
+    case 'keepDraft': return { ...state, stale: false, checks: [false, false, false] }
     case 'reset': return createOutreachState(state.locale)
   }
 }

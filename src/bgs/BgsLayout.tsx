@@ -7,14 +7,9 @@ import './bgs.css'
 
 export default function BgsLayout() {
   const { i18n } = useTranslation()
-  const { pathname, hash } = useLocation()
+  const { pathname } = useLocation()
   const copy = getCopy(i18n.resolvedLanguage)
   const ru = i18n.resolvedLanguage === 'ru'
-  useEffect(() => {
-    const target = hash ? document.getElementById(hash.slice(1)) : null
-    if (target) target.scrollIntoView({ behavior: 'instant' })
-    else window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [pathname, hash])
   useEffect(() => {
     const portfolioTitle = 'Nikita Sokolov — AI Product Engineer'
     const previousLang = document.documentElement.lang
