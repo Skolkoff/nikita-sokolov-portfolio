@@ -26,6 +26,16 @@ The static production files are generated in `dist/`. Upload the contents of thi
 ## Content integrity
 Project pages distinguish between an internal MVP, an independent demo concept and an academic project. No BGS Group affiliation or commissioned work is claimed. Demonstration data must be labeled as illustrative.
 
+## Personal BGS proposal
+
+- `/bgs` — independent personal introduction for BGS Group.
+- `/bgs/proposal` — bilingual product presentation with a scripted Outreach Assistant example.
+- `/projects/bgs-intelligence` redirects to `/bgs` for old shared links.
+- These pages are excluded from the main portfolio and sitemap, and set `noindex, nofollow` when rendered. This is discoverability guidance, not access control.
+- The example uses a fictional company and prepared templates. It has no live AI, research, CRM integration, backend persistence or sending capability. Editable drafts stay in browser memory and reset on refresh.
+- Both pages use the existing RU/EN language switch. On changing language, existing draft text is retained until explicit regeneration.
+- `npm test` covers draft changes, review invalidation and copy gating. `npm run build` produces the Apache-compatible bundle, including the existing `public/.htaccess` fallback needed for direct links.
+
 ## Проверенная публикация на REG.RU
 
 Используется обычный хостинг со статической сборкой в `dist/`; Python и Node.js на сервере для портфолио не нужны. Node 22 требуется только для сборки. GitHub Actions проверяет сборку и сохраняет артефакт `portfolio-static-site`, включая `.htaccess`.

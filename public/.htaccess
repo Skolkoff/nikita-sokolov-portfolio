@@ -1,5 +1,7 @@
 Options -MultiViews
 RewriteEngine On
+RewriteRule ^bgs/?$ bgs.html [L]
+RewriteRule ^bgs/proposal/?$ bgs-proposal.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]

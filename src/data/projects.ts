@@ -23,17 +23,6 @@ export const projects: Project[] = [
     href: '/projects/automotive',
   },
   {
-    id: 'bgs-intelligence',
-    number: '02',
-    title: 'BGS Intelligence',
-    category: 'AI · LEAD INTELLIGENCE',
-    summary: 'An independent product concept for researching, enriching and qualifying B2B companies for event sales teams.',
-    tags: ['AI workflows', 'Python', 'Data enrichment', 'Product design'],
-    status: 'Independent demo concept',
-    ru: { category: 'ИИ · АНАЛИЗ B2B-ЛИДОВ', summary: 'Независимая концепция для исследования, обогащения и оценки компаний для команд продаж отраслевых мероприятий.', status: 'Независимая демоконцепция' },
-    href: '/projects/bgs-intelligence',
-  },
-  {
     id: 'scivise',
     number: '03',
     title: 'SciVisE',
