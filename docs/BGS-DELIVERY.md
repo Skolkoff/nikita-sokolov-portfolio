@@ -34,7 +34,7 @@ Previous public directory is preserved outside the web root at:
 
 To roll back, preserve the current public directory separately and restore that directory to `~/www/portfolioskolkoff.ru/public`. Do not restore or enable the former Laravel application or its old automated deployment as part of this rollback.
 
-Production files were built from the managed-worktree source at `b6a065a`; the same source changes are integrated in the original checkout in `8961621` and `b5588af`. Later documentation/CI changes do not change the published UI. GitHub CI now runs the six tests in addition to its existing audit/build checks; no remote CI result is claimed here.
+The first publication was built from managed-worktree source `b6a065a`; those changes are integrated in the original checkout in `8961621` and `b5588af`. The final publication includes the shorter Russian step label “Оценка” so the mobile tab does not split a word. GitHub CI now runs the six tests in addition to its existing audit/build checks; no remote CI result is claimed here.
 
 ## Decisions
 
