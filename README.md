@@ -31,7 +31,7 @@ Project pages distinguish between an internal MVP, an independent demo concept a
 - `/bgs` — independent personal introduction for BGS Group.
 - `/bgs/proposal` — bilingual product presentation with a scripted Outreach Assistant example.
 - `/projects/bgs-intelligence` redirects to `/bgs` for old shared links.
-- These pages are excluded from the main portfolio and sitemap, and set `noindex, nofollow` when rendered. This is discoverability guidance, not access control.
+- These pages are excluded from the main portfolio and sitemap. Dedicated entry documents provide personal link-preview metadata and `noindex, nofollow`; Apache maps the clean URLs to them. This is discoverability guidance, not access control.
 - The example uses a fictional company and prepared templates. It has no live AI, research, CRM integration, backend persistence or sending capability. Editable drafts stay in browser memory and reset on refresh.
 - Both pages use the existing RU/EN language switch. On changing language, existing draft text is retained until explicit regeneration.
 - `npm test` covers draft changes, review invalidation and copy gating. `npm run build` produces the Apache-compatible bundle, including the existing `public/.htaccess` fallback needed for direct links.
