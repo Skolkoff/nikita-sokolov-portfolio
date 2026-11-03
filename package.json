@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
-    "postbuild": "node scripts/build-personal-pages.mjs"
+    "postbuild": "node scripts/build-personal-pages.mjs && node scripts/prerender.mjs",
+    "verify:build": "node --test tests/seo-build.check.mjs"
   },
   "dependencies": {
     "i18next": "^25.3.2",

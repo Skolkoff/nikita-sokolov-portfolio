@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import i18n from '../i18n'
+import Seo from './Seo'
 
 export default function Layout() {
   const { t } = useTranslation()
@@ -12,7 +13,7 @@ export default function Layout() {
   const toggleLanguage = () => i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en')
 
   return (
-    <div className="site-shell">
+    <div className="site-shell"><Seo />
       <header className="topbar">
         <Link to="/" className="wordmark" aria-label="Nikita Sokolov home">NS<span>.</span></Link>
         <nav className="main-nav" aria-label="Main navigation">

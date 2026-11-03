@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import ProjectDetail from './pages/ProjectDetail'
-import BgsLayout from './bgs/BgsLayout'
-import BgsLanding from './bgs/BgsLanding'
-import BgsProposal from './bgs/BgsProposal'
+const BgsLayout = lazy(() => import('./bgs/BgsLayout'))
+const BgsLanding = lazy(() => import('./bgs/BgsLanding'))
+const BgsProposal = lazy(() => import('./bgs/BgsProposal'))
 
 export default function App() {
   const { pathname, hash } = useLocation()
@@ -15,7 +15,7 @@ export default function App() {
     else window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname, hash])
   return (
-    <Routes>
+    <Suspense fallback={<div className="route-loading" role="status">Loading…</div>}><Routes>
       <Route path="/bgs" element={<BgsLayout />}>
         <Route index element={<BgsLanding />} />
         <Route path="proposal" element={<BgsProposal />} />
@@ -26,6 +26,6 @@ export default function App() {
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="*" element={<Home />} />
       </Route>
-    </Routes>
+    </Routes></Suspense>
   )
 }
