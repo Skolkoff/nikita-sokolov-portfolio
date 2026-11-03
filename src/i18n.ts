@@ -9,7 +9,7 @@ const resources = {
       work: { eyebrow: 'SELECTED WORK', title: 'Projects', intro: 'A selection of products and experiments across business automation, AI and data.' },
       about: { eyebrow: 'A BIT ABOUT ME', title: 'Engineering with a product mindset.', body: 'I enjoy taking ownership of the full product lifecycle: understanding a business process, finding the right problem to solve, designing a practical solution and building it. I use AI-assisted development tools as part of my workflow, while reviewing, testing and taking responsibility for the result.' },
       stack: 'CORE TOOLKIT',
-      contact: { eyebrow: 'HAVE A PROBLEM TO SOLVE?', title: 'Let’s build something useful.', body: 'Open to remote roles and product-focused engineering opportunities.', email: 'Email me' },
+      contact: { eyebrow: 'HAVE A PROBLEM TO SOLVE?', title: 'Let’s build something useful.', body: 'Open to remote roles and product-focused engineering opportunities.', email: 'Message on Telegram' },
       footer: 'Designed and built by Nikita Sokolov.'
     }
   },
@@ -20,7 +20,7 @@ const resources = {
       work: { eyebrow: 'ИЗБРАННЫЕ РАБОТЫ', title: 'Проекты', intro: 'Продукты и эксперименты на стыке бизнес-автоматизации, ИИ и работы с данными.' },
       about: { eyebrow: 'НЕМНОГО ОБО МНЕ', title: 'Разработка с продуктовым подходом.', body: 'Мне интересно отвечать за весь цикл создания продукта: разобраться в бизнес-процессе, найти задачу, спроектировать практичное решение и реализовать его. Использую AI-инструменты в разработке, но самостоятельно проверяю код, тестирую результат и отвечаю за него.' },
       stack: 'ОСНОВНОЙ СТЕК',
-      contact: { eyebrow: 'ЕСТЬ ЗАДАЧА, КОТОРУЮ НУЖНО РЕШИТЬ?', title: 'Давайте создадим полезный продукт.', body: 'Рассматриваю удалённые роли и задачи на стыке продукта и разработки.', email: 'Написать' },
+      contact: { eyebrow: 'ЕСТЬ ЗАДАЧА, КОТОРУЮ НУЖНО РЕШИТЬ?', title: 'Давайте создадим полезный продукт.', body: 'Рассматриваю удалённые роли и задачи на стыке продукта и разработки.', email: 'Написать в Telegram' },
       footer: 'Дизайн и разработка — Никита Соколов.'
     }
   }

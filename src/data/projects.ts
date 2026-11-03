@@ -6,6 +6,7 @@ export type Project = {
   summary: string
   tags: string[]
   status: string
+  ru: { category: string; summary: string; status: string }
   href: string
 }
 
@@ -15,9 +16,10 @@ export const projects: Project[] = [
     number: '01',
     title: 'Automotive Import Platform',
     category: 'BUSINESS AUTOMATION · FULL-STACK',
-    summary: 'An internal platform concept for sourcing vehicles, calculating landed cost and preparing client proposals.',
+    summary: 'An internal MVP for AvtoHous for sourcing vehicles, calculating landed cost and preparing client proposals.',
     tags: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'Redis'],
     status: 'Internal project · MVP',
+    ru: { category: 'БИЗНЕС-АВТОМАТИЗАЦИЯ · FULL-STACK', summary: 'Внутренний MVP для AvtoHous: поиск автомобилей, расчёт итоговой стоимости и подготовка коммерческих предложений.', status: 'Внутренний проект · MVP' },
     href: '/projects/automotive',
   },
   {
@@ -28,6 +30,7 @@ export const projects: Project[] = [
     summary: 'An independent product concept for researching, enriching and qualifying B2B companies for event sales teams.',
     tags: ['AI workflows', 'Python', 'Data enrichment', 'Product design'],
     status: 'Independent demo concept',
+    ru: { category: 'ИИ · АНАЛИЗ B2B-ЛИДОВ', summary: 'Независимая концепция для исследования, обогащения и оценки компаний для команд продаж отраслевых мероприятий.', status: 'Независимая демоконцепция' },
     href: '/projects/bgs-intelligence',
   },
   {
@@ -38,6 +41,7 @@ export const projects: Project[] = [
     summary: 'A scientific discovery platform with personalized recommendations and cross-topic content discovery.',
     tags: ['Python', 'PyTorch', 'PostgreSQL', 'Docker'],
     status: 'Academic project',
+    ru: { category: 'ДАННЫЕ · РЕКОМЕНДАТЕЛЬНЫЕ СИСТЕМЫ', summary: 'Академическая платформа на основе arXiv для поиска статей и рекомендаций исследований из смежных областей.', status: 'Академический проект' },
     href: '/projects/scivise',
   },
 ]

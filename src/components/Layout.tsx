@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -5,6 +6,9 @@ import i18n from '../i18n'
 
 export default function Layout() {
   const { t } = useTranslation()
+  useEffect(() => {
+    document.documentElement.lang = i18n.resolvedLanguage ?? 'en'
+  }, [t])
   const toggleLanguage = () => i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en')
 
   return (
