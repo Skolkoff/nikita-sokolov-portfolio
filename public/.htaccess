@@ -1,5 +1,7 @@
 Options -MultiViews
 RewriteEngine On
+# The CRM is a separate application with its own per-directory routing.
+RewriteRule ^crm-2b(?:/|$) - [L]
 # Redirect only browser requests, not Apache's internal rewrites.
 RewriteCond %{THE_REQUEST} \s/+automotive\.html[\s?] [NC]
 RewriteRule ^automotive\.html$ /projects/automotive [R=301,L]
